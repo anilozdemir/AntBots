@@ -72,8 +72,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.0054748523701182725 -0.9899089194200635 -0.14159928405231326 3.0539906177948772
-  position -7.0225694059817325 9.787304565946174 -17.961538625039395
+  orientation 0.005912847084441481 -0.9912729214321317 -0.13169295149992896 3.054104495743838
+  position -6.963009867934952 8.94536233804797 -17.493764963352753
   near 1
   follow "antBot"
   followSmoothness 0
@@ -592,6 +592,8 @@ FastFoodRestaurant {
 DEF antBot Robot {
   translation -7 0.5 5
   children [
+    Receiver {
+    }
     GPS {
     }
     DEF BODY Shape {
@@ -705,7 +707,7 @@ DEF antBot Robot {
         }
       }
     }
-    Camera {
+    DEF camera_front Camera {
       translation 0 0.5 1.4
       rotation 0 1 0 3.14
       children [
@@ -740,10 +742,14 @@ DEF antBot Robot {
     density -1
     mass 1
   }
-  controller "antBot"
+  controller "antBot-controller"
   supervisor TRUE
 }
-Robot {
+DEF supervisor Robot {
+  children [
+    Emitter {
+    }
+  ]
   name "supervisor"
   controller "antBot-supervisor"
   supervisor TRUE

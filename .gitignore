@@ -1,6 +1,8 @@
 # User-defined
 *core
 *.cache
+*.npy 
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
