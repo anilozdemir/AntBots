@@ -1,0 +1,160 @@
+  PROTO antBot [
+    field SFVec3f    translation  0 0 0
+    field SFRotation rotation     0 1 0 0
+    field SFString   controller  "void"
+    field SFColor    color    0.25 0.46 0.53
+    field SFString   name    "antBot"
+  ]
+  {
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor IS color
+        metalness 0.7
+      }
+      geometry Box {
+        size 2.5 0.8 3
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 1.32 -0.1 -1
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+          maxVelocity 10000
+          maxTorque 300
+        }
+      ]
+      endPoint Solid {
+        translation 1.32 -0.1 -1
+        rotation 0 0 1 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.168627 0.211765 0.223529
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.4
+              subdivision 24
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -1.32 -0.1 -1
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+          maxVelocity 10000
+          maxTorque 300
+        }
+      ]
+      endPoint Solid {
+        translation -1.32 -0.1 -1
+        rotation 0 0 1 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -1.32 -0.1 1
+      }
+      device [
+        RotationalMotor {
+          name "motor3"
+          maxVelocity 10000
+          maxTorque 300
+        }
+      ]
+      endPoint Solid {
+        translation -1.32 -0.1 1
+        rotation 0 0 1 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 1.32 -0.1 1
+      }
+      device [
+        RotationalMotor {
+          name "motor4"
+          maxVelocity 10000
+          maxTorque 300
+        }
+      ]
+      endPoint Solid {
+        translation 1.32 -0.1 1
+        rotation 0 0 1 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    Camera {
+      translation 0 0.5 1.4
+      rotation 0 1 0 3.14
+      children [
+        Transform {
+          translation 0 0 0.015
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0.666667 1
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.2
+                radius 0.1
+              }
+            }
+          ]
+        }
+      ]
+      name "camera_front"
+      fieldOfView 1.4
+      width 180
+      height 60
+    }
+  ]
+  name IS name
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller IS controller
+  }
+}
