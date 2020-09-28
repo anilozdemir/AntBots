@@ -10,7 +10,8 @@ class antBotDriver(Supervisor):
         self.robot  = self.getFromDef("antBot")
         self.trans  = self.robot.getField("translation")
         self.values = self.trans.getSFVec3f()
-        self.emitter = self.getEmitter('emitter')
+        self.emitter = self.getEmitter('emitter') 
+        # TODO: send data for initilisation to antBot
 
     def run(self, LIST):
         # Main loop:
@@ -32,4 +33,4 @@ class antBotDriver(Supervisor):
 
 
 driver = antBotDriver()
-driver.run(range(0,1000,100))
+driver.run(range(0,200,1))

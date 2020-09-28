@@ -5,6 +5,6 @@ sceneTreePerspectives: 000000ff0000000100000002000000c0000000fa01000000020100000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 0 "controllers/antBot-supervisor/antBot-supervisor.py" "controllers/antBot-controller/antBot-controller.py"
+textFiles: 1 "controllers/antBot-supervisor/antBot-supervisor.py" "controllers/antBot-controller/antBot-controller.py"
 consoles: Console:All:All
-renderingDevicePerspectives: antBot:camera_front;1;4.80556;0;0
+renderingDevicePerspectives: antBot:camera_front;1;2.56111;0;0.135252

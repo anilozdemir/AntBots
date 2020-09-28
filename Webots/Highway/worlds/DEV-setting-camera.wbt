@@ -72,8 +72,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.005912847084441481 -0.9912729214321317 -0.13169295149992896 3.054104495743838
-  position -6.963009867934952 8.94536233804797 -17.493764963352753
+  orientation 0.009541959189779495 -0.9990918038190867 -0.041527323009608694 3.040547577407294
+  position -9.589866156404074 26.794922838800403 -35.262326033269446
   near 1
   follow "antBot"
   followSmoothness 0
@@ -730,8 +730,8 @@ DEF antBot Robot {
         }
       ]
       name "camera_front"
-      fieldOfView 0.7854
-      width 180
+      fieldOfView 6.28
+      width 360
       height 40
       spherical TRUE
     }
