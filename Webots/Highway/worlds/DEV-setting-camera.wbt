@@ -72,8 +72,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.012940843564808202 -0.9998946733944777 0.006570896832397931 2.8266350469262274
-  position -9.585221097669892 3.226208247274209 -8.268768434114563
+  orientation 0.0054748523701182725 -0.9899089194200635 -0.14159928405231326 3.0539906177948772
+  position -7.0225694059817325 9.787304565946174 -17.961538625039395
   near 1
   follow "antBot"
   followSmoothness 0
@@ -589,7 +589,7 @@ FastFoodRestaurant {
   translation -24.1581 0.09 312.576
   rotation 0 1 0 1.309
 }
-Robot {
+DEF antBot Robot {
   translation -7 0.5 5
   children [
     GPS {
@@ -616,7 +616,7 @@ Robot {
       ]
       endPoint Solid {
         translation 1.32 -0.1 -1
-        rotation 0 0 1 1.5708
+        rotation 0 7.850447875279516e-17 1 1.5707999999999998
         children [
           DEF WHEEL Shape {
             appearance PBRAppearance {
@@ -649,7 +649,7 @@ Robot {
       ]
       endPoint Solid {
         translation -1.32 -0.1 -1
-        rotation 0 0 1 1.5708
+        rotation 1.5700895750559036e-16 0 1 1.5707999999999998
         children [
           USE WHEEL
         ]
@@ -672,7 +672,7 @@ Robot {
       ]
       endPoint Solid {
         translation -1.32 -0.1 1
-        rotation 0 0 1 1.5708
+        rotation -1.5700895750559031e-16 7.850447875279516e-17 1 1.5708000000000004
         children [
           USE WHEEL
         ]
@@ -695,7 +695,7 @@ Robot {
       ]
       endPoint Solid {
         translation 1.32 -0.1 1
-        rotation 0 0 1 1.5708
+        rotation -7.850447875279516e-17 0 1 1.5708
         children [
           USE WHEEL
         ]
@@ -741,4 +741,10 @@ Robot {
     mass 1
   }
   controller "antBot"
+  supervisor TRUE
+}
+Robot {
+  name "supervisor"
+  controller "antBot-supervisor"
+  supervisor TRUE
 }
