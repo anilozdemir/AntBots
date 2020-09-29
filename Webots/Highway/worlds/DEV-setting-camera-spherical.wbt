@@ -620,7 +620,7 @@ DEF antBot Robot {
       ]
       endPoint Solid {
         translation 1.32 -0.1 -1
-        rotation 1.9318239200409016e-05 -1.931831016031557e-05 0.9999999996268042 1.570800000373185
+        rotation 1.9318239200409036e-05 -1.931831016031557e-05 0.9999999996268042 1.5708000003731828
         children [
           DEF WHEEL Shape {
             appearance PBRAppearance {
@@ -654,7 +654,7 @@ DEF antBot Robot {
       ]
       endPoint Solid {
         translation -1.32 -0.1 -1
-        rotation 1.931227328164153e-05 -1.9312344219555573e-05 0.9999999996270347 1.5708000003729545
+        rotation 1.9312273281641536e-05 -1.931234421955558e-05 0.9999999996270347 1.5708000003729523
         children [
           USE WHEEL
         ]
