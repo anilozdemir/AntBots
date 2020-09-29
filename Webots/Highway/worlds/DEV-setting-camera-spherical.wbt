@@ -72,8 +72,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.1346022947473261 -0.9761192120090886 -0.17050954869305654 4.324683300529262
-  position 2.446223261698599 5.012568380279646 95.91326893792818
+  orientation 0.021825005343053514 -0.99770509861234 -0.06409528332659724 3.4479303124204734
+  position 24.29469480939978 25.347395285446634 -70.02096784523594
   near 1
   follow "antBot"
   followSmoothness 0
@@ -590,7 +590,7 @@ FastFoodRestaurant {
   rotation 0 1 0 1.309
 }
 DEF antBot Robot {
-  translation -6.9999999992803 0.4996047816698335 96.99990016629127
+  translation -7 0.499605 0
   rotation -0.9998610656089824 0.0017184747803858948 0.016579997699010775 -2.9006654817000803e-05
   children [
     Receiver {
@@ -620,7 +620,7 @@ DEF antBot Robot {
       ]
       endPoint Solid {
         translation 1.32 -0.1 -1
-        rotation 1.931823920040896e-05 -1.9318310160315566e-05 0.9999999996268042 1.570800000373192
+        rotation 1.9318239200409016e-05 -1.931831016031557e-05 0.9999999996268042 1.570800000373185
         children [
           DEF WHEEL Shape {
             appearance PBRAppearance {
@@ -654,7 +654,7 @@ DEF antBot Robot {
       ]
       endPoint Solid {
         translation -1.32 -0.1 -1
-        rotation 1.931227328164151e-05 -1.931234421955556e-05 0.9999999996270347 1.5708000003729614
+        rotation 1.931227328164153e-05 -1.9312344219555573e-05 0.9999999996270347 1.5708000003729545
         children [
           USE WHEEL
         ]
@@ -713,11 +713,10 @@ DEF antBot Robot {
       }
     }
     DEF camera_front Camera {
-      translation 0 0.5 1.4
+      translation 0 1 1.4
       rotation 0 1 0 3.14
       children [
         Transform {
-          translation 0 0 1.5
           rotation 1 0 0 1.57
           children [
             Shape {
@@ -735,9 +734,9 @@ DEF antBot Robot {
         }
       ]
       name "camera_front"
-      fieldOfView 6.28
-      width 360
-      height 40
+      fieldOfView 3.14
+      width 720
+      height 150
       spherical TRUE
     }
     DEF camera_spherical Camera {
