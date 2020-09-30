@@ -72,8 +72,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.012818573374056666 -0.9996418097945015 -0.02349332431623196 3.2420620361211423
-  position -6.49593237343229 8.139432589943963 -40.9187603347465
+  orientation 0.011253760846580217 -0.9999223253218349 0.005356882468622854 3.8726264734885265
+  position 21.986527241678946 3.0811458889709495 -31.330141018963396
   near 1
   follow "antBot"
   followSmoothness 0
@@ -595,126 +595,18 @@ Warehouse {
   rotation 0 1 0 1.5708
 }
 DEF antBot Robot {
-  translation -7 1.4 0
+  translation -7 1 0
   rotation 0.9998610656089825 -0.001718474780385895 -0.01657999769901078 2.9006647994061505e-05
   children [
     Receiver {
     }
-    GPS {
-    }
     DEF BODY Shape {
       appearance PBRAppearance {
-        baseColor 0.258824 0.466667 0.533333
-        metalness 0.7
+        baseColor 0.321569 0.588235 0.666667
+        metalness 0
       }
       geometry Box {
         size 2.5 2 3
-      }
-    }
-    DEF WHEEL1 HingeJoint {
-      jointParameters HingeJointParameters {
-        position 3.8636620330400803e-05
-        anchor 1.32 -0.1 -1
-      }
-      device [
-        RotationalMotor {
-          name "motor1"
-          maxVelocity 10000
-          maxTorque 300
-        }
-      ]
-      endPoint Solid {
-        translation 1.32 -1.0000000000000053 -1
-        rotation 1.9318239200409124e-05 -1.9318310160315583e-05 0.9999999996268042 1.570800000373171
-        children [
-          DEF WHEEL Shape {
-            appearance PBRAppearance {
-              baseColor 0.168627 0.211765 0.223529
-              roughness 1
-              metalness 0
-            }
-            geometry Cylinder {
-              height 0.1
-              radius 0.4
-              subdivision 24
-            }
-          }
-        ]
-        boundingObject USE WHEEL
-        physics Physics {
-        }
-      }
-    }
-    DEF WHEEL2 HingeJoint {
-      jointParameters HingeJointParameters {
-        position 3.862468844871487e-05
-        anchor -1.32 -0.1 -1
-      }
-      device [
-        RotationalMotor {
-          name "motor2"
-          maxVelocity 10000
-          maxTorque 300
-        }
-      ]
-      endPoint Solid {
-        translation -1.32 -1.0000000000000053 -1
-        rotation 1.9312273281641573e-05 -1.931234421955563e-05 0.9999999996270347 1.5708000003729405
-        children [
-          USE WHEEL
-        ]
-        name "solid(1)"
-        boundingObject USE WHEEL
-        physics Physics {
-        }
-      }
-    }
-    DEF WHEEL3 HingeJoint {
-      jointParameters HingeJointParameters {
-        position 0.0008836737889281845
-        anchor -1.32 -0.1 1
-      }
-      device [
-        RotationalMotor {
-          name "motor3"
-          maxVelocity 10000
-          maxTorque 300
-        }
-      ]
-      endPoint Solid {
-        translation -1.32 -1.0000000000000053 0.9999999999999999
-        rotation 0.0004418352140063667 -0.0004418368369607888 0.9999998047809077 1.5708001952191117
-        children [
-          USE WHEEL
-        ]
-        name "solid(2)"
-        boundingObject USE WHEEL
-        physics Physics {
-        }
-      }
-    }
-    DEF WHEEL4 HingeJoint {
-      jointParameters HingeJointParameters {
-        position 0.0008837059961242736
-        anchor 1.32 -0.1 1
-      }
-      device [
-        RotationalMotor {
-          name "motor4"
-          maxVelocity 10000
-          maxTorque 300
-        }
-      ]
-      endPoint Solid {
-        translation 1.32 -1.0000000000000027 1
-        rotation 0.00044185131753905055 -0.0004418529405526244 0.999999804766677 1.5708001952333417
-        children [
-          USE WHEEL
-        ]
-        name "solid(3)"
-        boundingObject USE WHEEL
-        physics Physics {
-        }
       }
     }
     DEF camera_front Camera {

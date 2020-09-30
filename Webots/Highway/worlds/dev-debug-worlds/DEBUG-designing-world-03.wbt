@@ -1,0 +1,714 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  info [
+    "Autonomous Robot Simulation"
+    "Visual Place Recognition"
+  ]
+  title "VPR-Highway"
+  ERP 0.6
+  basicTimeStep 10
+  coordinateSystem "NUE"
+  lineScale 1
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "CitroenCZeroWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "ToyotaPriusWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "LincolnMKZWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "RangeRoverSportSVRWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "TruckWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.020458785199899392 -0.997196491604179 -0.0719763519529928 3.380284337920465
+  position 1.5082946711745606 10.023386527896063 -45.327279303666316
+  near 1
+  follow "antBot"
+  followSmoothness 0
+  lensFlare LensFlare {
+    transparency 0.3
+  }
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Fog {
+  color 0.454902 0.454902 0.454902
+  fogType "EXPONENTIAL"
+  visibilityRange 500
+}
+DEF FLOOR Solid {
+  boundingObject Plane {
+  }
+}
+StraightRoadSegment {
+  translation -8.75 0.01 0
+  id "0"
+  width 15
+  numberOfLanes 4
+  numberOfForwardLanes 0
+  lines [
+    RoadLine {
+      type "continuous"
+      width 0.25
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 5000
+}
+StraightRoadSegment {
+  translation 8.75 0.01 5000
+  rotation 0 1 0 3.1415927
+  name "road(1)"
+  id "1"
+  width 15
+  numberOfLanes 4
+  numberOfForwardLanes 0
+  lines [
+    RoadLine {
+      type "continuous"
+      width 0.25
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 5000
+}
+HighwayPole {
+  translation -16 0 215
+  rotation 0 1 0 1.5707997
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 600
+  rotation 0 1 0 1.5707997
+  name "highway pole(1)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 1000
+  rotation 0 1 0 1.5707997
+  name "highway pole(2)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 1400
+  rotation 0 1 0 1.5707997
+  name "highway pole(3)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 1800
+  rotation 0 1 0 1.5707997
+  name "highway pole(4)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 2200
+  rotation 0 1 0 1.5707997
+  name "highway pole(5)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 2600
+  rotation 0 1 0 1.5707997
+  name "highway pole(6)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+HighwayPole {
+  translation -16 0 3000
+  rotation 0 1 0 1.5707997
+  name "highway pole(7)"
+  stand 2
+  height 7
+  length 31
+  thickness 0.35
+  curveRadius 0.5
+  rightHorizontalSigns [
+    HighwaySign {
+      translation 0 0 5.35
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  rightVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(1)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+  leftHorizontalSigns [
+    HighwaySign {
+      translation 0 0 -17.5
+      name "highway sign(2)"
+      height 3.5
+      texture [
+        "textures/highway_sign_bayonne.jpg"
+      ]
+    }
+  ]
+  leftVerticalSigns [
+    HighwaySign {
+      translation 0 0.66 0
+      name "highway sign(3)"
+      height 1.7
+      length 3.5
+      texture [
+        "textures/highway_sign_sebastian.jpg"
+      ]
+    }
+  ]
+}
+Solid {
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        baseColorMap ImageTexture {
+          url [
+            "textures/ground_grass.jpg"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+        textureTransform TextureTransform {
+          scale 1500 43
+        }
+      }
+      geometry Extrusion {
+        crossSection [
+          60 0, 59 0.061558297, 58 0.24471742, 57 0.54496738, 56 0.95491503, 55 1.4644661, 54 2.0610737, 53 2.7300475, 52 3.454915, 51 4.2178277, 50 5, 49 5.7821723, 48 6.545085, 47 7.2699525, 46 7.9389263, 45 8.5355339, 44 9.045085, 43 9.4550326, 42 9.7552826, 41 9.9384417, 40 10, 39 9.9384417, 38 9.7552826, 37 9.4550326, 36 9.045085, 35 8.5355339, 34 7.9389263, 33 7.2699525, 32 6.545085, 31 5.7821723, 30 5, 29 4.2178277, 28 3.454915, 27 2.7300475, 26 2.0610737, 25 1.4644661, 24 0.95491503, 23 0.54496738, 22 0.24471742, 21 0.061558297, 20 0, -20 0, -21 0.061558297, -22 0.24471742, -23 0.54496738, -24 0.95491503, -25 1.4644661, -26 2.0610737, -27 2.7300475, -28 3.454915, -29 4.2178277, -30 5, -31 5.7821723, -32 6.545085, -33 7.2699525, -34 7.9389263, -35 8.5355339, -36 9.045085, -37 9.4550326, -38 9.7552826, -39 9.9384417, -40 10, -41 9.9384417, -42 9.7552826, -43 9.4550326, -44 9.045085, -45 8.5355339, -46 7.9389263, -47 7.2699525, -48 6.545085, -49 5.7821723, -50 5, -51 4.2178277, -52 3.454915, -53 2.7300475, -54 2.0610737, -55 1.4644661, -56 0.95491503, -57 0.54496738, -58 0.24471742, -59 0.061558297, -60 0
+        ]
+        spine [
+          0 0 0
+          0 0 5000
+        ]
+        beginCap FALSE
+        endCap FALSE
+        ccw FALSE
+        creaseAngle 1.1
+      }
+    }
+  ]
+  name "grass"
+}
+LargeResidentialTower {
+  translation -25 0 2137
+  rotation 0 1 0 -1.57
+  name "residential tower(1)"
+  numberOfFloors 7
+}
+Forest {
+  treesFiles [
+    "forest/highway_overtake/Trees1.forest"
+  ]
+  shape [
+    0 0
+  ]
+  density 0.7
+  type "hackberry tree"
+  maxHeight 10
+  minHeight 5
+  maxRadius 4.1
+  minRadius 2
+}
+Church {
+  translation 23.8197 2.84217e-14 117.164
+}
+LargeResidentialTower {
+  translation 27.6967 0 350.455
+}
+Warehouse {
+  translation -35.2298 5.64 33.14
+  rotation 0 1 0 1.5708
+}
+StripBuilding {
+  translation 22 0 500
+  rotation 0 1 0 1.57
+}
+SimpleTwoFloorsHouse {
+  translation -27 0 1100
+  appearance PBRAppearance {
+    baseColor 0.709804 0.027451 0.121569
+    roughness 0.5
+    metalness 0
+  }
+}
+SimpleTwoFloorsHouse {
+  translation 27 0 900
+  name "simple two-storey house(1)"
+  appearance PBRAppearance {
+    baseColor 0.0862745 0.0431373 0.686275
+    roughness 0.5
+    metalness 0
+  }
+}
+SimpleTwoFloorsHouse {
+  translation -27 0.5 650
+  name "simple two-storey house(2)"
+  appearance PBRAppearance {
+    baseColor 0.4 0.4 0.596078
+    roughness 0.5
+    metalness 0
+  }
+}
+SimpleTwoFloorsHouse {
+  translation -25 1.6 1280
+  rotation 0 1 0 1.57
+  name "simple two-storey house(4)"
+  appearance PBRAppearance {
+    baseColor 0.4 0.4 0.596078
+    roughness 0.5
+    metalness 0
+  }
+}
+SimpleTwoFloorsHouse {
+  translation -26 0 783
+  name "simple two-storey house(3)"
+  appearance PBRAppearance {
+    baseColor 0.713725 0.235294 0.713725
+    roughness 0.5
+    metalness 0
+  }
+}
+BungalowStyleHouse {
+  translation 23 1 1150
+}
+BungalowStyleHouse {
+  translation 28 1 1318
+  rotation 0 1 0 1.57
+  name "bungalow style house(1)"
+  appearance PBRAppearance {
+    baseColor 0.470588 0 0
+    roughness 1
+    metalness 0
+  }
+}
+ComposedHouse {
+  translation 22 1 1500
+  rotation 0 1 0 -1.57
+}
+HouseWithGarage {
+  translation -27 0 1600
+}
+ResidentialBuildingWithRoundFront {
+  translation 31 1 1720
+  rotation 0 1 0 1.57
+  type "light grey"
+}
+ResidentialBuildingWithRoundFront {
+  translation 31 1 1676
+  rotation 0 1 0 1.57
+  name "residential building(1)"
+}
+ResidentialBuildingWithRoundFront {
+  translation -31 1 1484
+  rotation 0 1 0 -1.57
+  name "residential building(2)"
+  type "light braun"
+}
+Warehouse {
+  translation -28 0 1850
+  rotation 0 1 0 1.57
+  name "warehouse(1)"
+}
+GasStation {
+  translation 29 0 1979
+  rotation 0 1 0 1.57
+}
+DEF antBot Robot {
+  translation 7 0.5 0
+  children [
+    Receiver {
+    }
+    DEF camera Camera {
+      rotation 0 1 0 3.14
+      width 720
+      height 150
+    }
+  ]
+  name "antBot"
+  controller "camera"
+  supervisor TRUE
+}
+DEF supervisor Robot {
+  children [
+    Emitter {
+    }
+  ]
+  name "supervisor"
+  controller "antBot-supervisor"
+  supervisor TRUE
+}
