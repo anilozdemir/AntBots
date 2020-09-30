@@ -38,5 +38,5 @@ class antBot(Robot):
 
 agent = antBot()
 agent.run()
-agent.save('../../data/4000-10')
+agent.save('../../data/2000-10')
 # TODO get where project is located!

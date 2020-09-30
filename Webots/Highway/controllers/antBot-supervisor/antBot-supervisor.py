@@ -33,4 +33,4 @@ class antBotDriver(Supervisor):
 
 
 driver = antBotDriver()
-driver.run(range(0,41,10))
+driver.run(range(0,2000,10))
