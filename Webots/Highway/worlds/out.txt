@@ -1,0 +1,6 @@
+INFO: antBot-controller: Starting controller: python3 -u antBot-controller.py
+INFO: antBot-supervisor: Starting controller: python3 -u antBot-supervisor.py
+>> supervisor started
+INFO: 'antBot-supervisor' controller exited successfully.
+>> ../../data/4000-10.npy is saved!
+INFO: 'antBot-controller' controller exited successfully.

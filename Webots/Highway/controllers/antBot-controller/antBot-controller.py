@@ -9,10 +9,7 @@ class antBot(Robot):
     def __init__(self):
         super(antBot, self).__init__()
         self.camera_front = self.getCamera('camera_front')
-        self.camera_front.enable(self.timeStep)    
-        # self.camera_spherical = self.getCamera('camera_spherical')
-        # self.camera_spherical.enable(self.timeStep) 
-           
+        self.camera_front.enable(self.timeStep)              
         self.receiver = self.getReceiver('receiver')
         self.receiver.enable(self.timeStep)
         self.Images = []
@@ -41,5 +38,5 @@ class antBot(Robot):
 
 agent = antBot()
 agent.run()
-agent.save('../../data/Yo2')
+agent.save('../../data/4000-10')
 # TODO get where project is located!

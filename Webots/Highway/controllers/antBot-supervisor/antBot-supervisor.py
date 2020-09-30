@@ -15,7 +15,7 @@ class antBotDriver(Supervisor):
 
     def run(self, LIST):
         # Main loop:
-        XY = [-7, 0.5]
+        XY = [-7, 1.4]
         INIT = XY + [0,]
         self.trans.setSFVec3f(INIT)
         print('>> supervisor started')
@@ -33,4 +33,4 @@ class antBotDriver(Supervisor):
 
 
 driver = antBotDriver()
-driver.run(range(0,100,5))
+driver.run(range(0,41,10))
