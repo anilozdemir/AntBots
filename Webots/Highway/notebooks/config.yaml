@@ -1,0 +1,32 @@
+hyperparameters: 
+    nTemporal    : 1
+    nReservoir   : 500
+    alpha        : 0.80
+    rho          : 0.998
+    gamma        : 0.005 
+    phi          : 0.50  
+    sparsity     : 0.90
+    randomSeed   : 1
+
+experimentParameters:
+    learningRate : 0.001
+    nEpoch       : 50
+    nCheck       : 10
+    nOperation   : 10
+    optimizer    : Adam
+
+modelParameters:    
+    readoutType  : 'nRes'
+    nInput       : -1
+    nOutput      : 200
+    
+experimentDetails:
+    dataset      : 'Highway-2000-10'
+    problem      : 'VPR'
+    labelFreq    : 1
+    tolerance    : 5
+    model        : 'EMB' 
+    nImages      : 200
+    width        : 90
+    height       : 25
+    trainingSet  : 'mountains'  
