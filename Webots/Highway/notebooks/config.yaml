@@ -16,17 +16,18 @@ experimentParameters:
     optimizer    : Adam
 
 modelParameters:    
+    model        : 'EMB' 
     readoutType  : 'nRes'
-    nInput       : -1
+    nInput       : 2048
     nOutput      : 200
     
 experimentDetails:
-    dataset      : 'Highway-2000-10'
     problem      : 'VPR'
+    dataSetTitle : 'Highway-2000-10'
+    dataSetPath  : '../data/2000-10/'
+    dataSets     : ['mountains', 'dusk', 'dawn_cloudy_empty']
     labelFreq    : 1
     tolerance    : 5
-    model        : 'EMB' 
     nImages      : 200
     width        : 90
     height       : 25
-    trainingSet  : 'mountains'  

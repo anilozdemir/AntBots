@@ -13,26 +13,18 @@ from pytorch_lightning.core.lightning import LightningModule
 
 #TODO Move into pyRC.datasets
 class antBotDatasets():
-    def __init__(self, expPath = '../data/2000-10/'):
+    def __init__(self, expPath, dataSetNames):
         self.expPath     = expPath # experiment path
-        self.HW          = [[75,360], [50,180], [25,90]] # (h,w) pairs FIXED for now
-        self.strImages   = sorted([f.replace('.npy','') for f in os.listdir(self.expPath)])# get the name of all data in the given experiment path
+        # TODO put this is as mode='auto', or operate with given list of string
+        # self.strImages   = sorted([f.replace('.npy','') for f in os.listdir(self.expPath)])# get the name of all data in the given experiment path
+        self.strImages   = dataSetNames
         self.allImages   = np.stack([np.load(self.expPath+f+'.npy') for f in self.strImages]) # load all the data matched in strImages
         self.nDatasets   = self.allImages.shape[0]
         self.nImages     = self.allImages.shape[1]
-        self.HW_Original = self.allImages.shape[-2:]
-        self.nHW         = len(self.HW)
+        self.camSize     = self.allImages.shape[-2:]
         print(f'>> Loaded {self.nDatasets} datasets of {self.nImages} images each!')
         
-#         self.allImagesTorch = torch.Tensor(self.allImages)
-
-    def setGT(self, strGT = 'mountains'):
-        #TODO try except error throw if strGT is not in list
-        self.strGT    = strGT # ground truth name
-        self.gtImages = self.allImages[self.strImages.index(strGT)] # find the index of the gtName in the list of names first
-        print(f'>> Set `{self.strGT}` as ground truth!')
-    
-    def get(self, strDataset = 'mountains', nImages=200, h=25, w=90):
+    def get(self, strDataset, nImages, h, w):
         ''' Note:
             dataSet in shape: torch.Size([num_images, height, width, batchSize=1]) # batchSize=1 reserved for batch, to be permuted to top
         '''
@@ -60,37 +52,45 @@ class antBotEMB(LightningModule):
         super().__init__()
         self.hparams = {**config['hyperparameters'], **config['experimentParameters'], **config['modelParameters'], **config['experimentDetails']} # unzip nested dict
         self.dlargs  = {'nImages': self.hparams['nImages'], 'h': self.hparams['height'], 'w': self.hparams['width']}
-        self.RC      = RC.ESN_NA(self.hparams, readoutType=self.hparams['readoutType'])
+        self.RC      = RC.ESN_NA(self.hparams, readoutType = self.hparams['readoutType'])
         print('>> Network is constructed!')
-        
+
     def forward(self, x):
         return self.RC(x)
 
     def prepare_data(self):
-        antBotData   = antBotDatasets()
-        self.DL0  = antBotData.get('mountains', **self.dlargs)
-        DS0          = antBotData.dataSet # get the dataset of DL0 
-        self.DL1  = antBotData.get('dusk', **self.dlargs)
-        DS1          = antBotData.dataSet # get the dataset of DL1
-        self.DL2  = antBotData.get('dawn_cloudy_empty', **self.dlargs)
-        DS2          = antBotData.dataSet # get the dataset of DL2 
-        self.trainDL = antBotData.concatDatasets([DS0, DS1, DS2]) # train DL is concat of DL0, DL1, DL2
-        # self.GroundTruth        = torch.Tensor(self.data_0.groundTruth)
-        self.hparams['nParams'] = utA.modelParameters(self.RC, returnOnly=True).item()
+        antBotData = antBotDatasets(self.hparams['dataSetPath'], self.hparams['dataSets'])
+        self.DL, self.DS = [], []
+        for dataSetName in self.hparams['dataSets']:
+            DL = antBotData.get(dataSetName, **self.dlargs)
+            DS = antBotData.dataSet
+            self.DL.append(DL)
+            self.DS.append(DS)
+        
+        # self.DL0 = antBotData.get(self.dataStr[0], **self.dlargs)
+        # DS0      = antBotData.dataSet # get the dataset of DL0 
+        # self.DL1 = antBotData.get(self.dataStr[1], **self.dlargs)
+        # DS1      = antBotData.dataSet # get the dataset of DL1
+        # self.DL2 = antBotData.get(self.dataStr[2], **self.dlargs)
+        # DS2      = antBotData.dataSet # get the dataset of DL2 
+
+        self.DLT = antBotData.concatDatasets(self.DS) # train DL (DLT) is concat of DL0, DL1, DL2
         print('>> Datasets are loaded!')
         
+        self.hparams['nParams'] = utA.modelParameters(self.RC, returnOnly=True).item()
+        
     def train_dataloader(self):
-        return self.trainDL
+        return self.DLT
       
     def test_dataloader(self):
-        return [self.DL0, self.DL1, self.DL2]
+        # return [self.DL0, self.DL1, self.DL2]
+        return self.DL
     
     def configure_optimizers(self):
         params = [{'params': self.RC.Wout, 'lr': self.hparams['learningRate']}] 
         return torch.optim.Adam(params)
 
     def training_step(self, batch, batch_idx):
-
         if batch_idx == 0:  # At the beginning of each epoch, reset the model! 
             self.RC.reset()
             
@@ -101,22 +101,28 @@ class antBotEMB(LightningModule):
         return {'loss': loss, 'log': logs_loss}
 
     def test_step(self, batch, batch_idx, dataloader_idx): 
-        #TODO implement error instead of loss! torch.mean(abs(df['imageID']-df['predIDF']))
         x, y    = batch
         y_hat   = self(x)
         diff    = torch.abs(y - torch.argmax(y_hat))
         return {'diff': diff, 'y_pred': y_hat}
 
     def test_epoch_end(self, outputs):
-        # TODO automate this with for loop!
-        err_0 = torch.stack([x['diff'] for x in outputs[0]]).float().mean()
-        err_1 = torch.stack([x['diff'] for x in outputs[1]]).float().mean()
-        err_2 = torch.stack([x['diff'] for x in outputs[2]]).float().mean()
+        logs_err = {}
+        logs_acc = {}
+        for i, output in enumerate(outputs):
+            err = torch.stack([x['diff'] for x in output]).float().mean()
+            acc = torch.stack([x['diff']<self.hparams['tolerance'] for x in output]).float().mean()*100 # percentage
+            logs_err['err'+str(i)] = err
+            logs_acc['acc'+str(i)] = acc
+
+        # err_0 = torch.stack([x['diff'] for x in outputs[0]]).float().mean()
+        # err_1 = torch.stack([x['diff'] for x in outputs[1]]).float().mean()
+        # err_2 = torch.stack([x['diff'] for x in outputs[2]]).float().mean()
         
-        acc_0 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[0]]).float().mean()*100 # percentage
-        acc_1 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[1]]).float().mean()*100 # percentage
-        acc_2 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[2]]).float().mean()*100 # percentage
+        # acc_0 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[0]]).float().mean()*100 # percentage
+        # acc_1 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[1]]).float().mean()*100 # percentage
+        # acc_2 = torch.stack([x['diff']<self.hparams['tolerance'] for x in outputs[2]]).float().mean()*100 # percentage
         
-        logs_err = {'err_0': err_0, 'err_1': err_1, 'err_2': err_2}
-        logs_acc = {'acc_0' : acc_0,  'acc_1' : acc_1 , 'acc_2': acc_2}
+        # logs_err = {'err_0': err_0, 'err_1': err_1, 'err_2': err_2}
+        # logs_acc = {'acc_0' : acc_0,  'acc_1' : acc_1 , 'acc_2': acc_2}
         return {'log': {**logs_err, **logs_acc}}
