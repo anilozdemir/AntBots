@@ -30,7 +30,7 @@ class antBotDatasets():
         '''
         dsID    = self.strImages.index(strDataset)
         Images0 = self.allImages[dsID]
-        Images  = np.stack([IMAGEOP(img,h,w) for img in Images0]) # need to swap axis of height(2) and width(1)
+        Images  = np.stack([IMAGEOP(img,h,w) for img in Images0])/255.0 # need to swap axis of height(2) and width(1); divide by 255
         ImagesT = torch.Tensor(Images).permute(0,2,1).unsqueeze(-1) # add dimension for batch operations
         iLabels = range(self.nImages)
         self.dataSet           = ImageDataset(ImagesT, iLabels)
