@@ -7,4 +7,4 @@ centralWidgetVisible: 1
 orthographicViewHeight: 1
 textFiles: 0 "controllers/antBot-controller/antBot-controller.py" "controllers/antBot-supervisor/antBot-supervisor.py"
 consoles: Console:All:All
-renderingDevicePerspectives: antBot:camera_front;1;1.02667;0;0
+renderingDevicePerspectives: antBot:camera_front;1;1.13333;0;0
